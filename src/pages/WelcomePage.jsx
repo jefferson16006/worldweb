@@ -6,8 +6,8 @@ const WelcomePage = () => {
   return (
     <div className='min-h-screen flex flex-col justify-center items-center gap-4'>
       <img src={logo} width={200} height={200} alt='welcomeLogo' className='text-blue-100'/>
-      <h1 className='text-3xl font-bold'>Welcome to WorldWeb</h1>
-      <h3 className='-mt-2 mb-2'>Your go-to reverse dictionary app</h3>
+      <h1 className='text-3xl font-bold max-[886px]:text-center'>Welcome to WorldWeb</h1>
+      <h3 className='-mt-2 mb-2 max-[886px]:text-center'>Your go-to reverse dictionary app</h3>
       <Link to='/guest' className='px-4 py-2 border rounded-full w-60 text-[19px] hover:bg-violet-700 hover:border-violet-700 cursor-pointer text-center'>
         Continue as Guest
       </Link>
