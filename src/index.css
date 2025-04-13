@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    @apply bg-[#161616] text-white;
+    font-family: 'Rubik', sans-serif;
+    padding: 0 20px;
+}
+.result-container{
+    display: grid;
+    grid-template-areas:
+      "word word synonym"
+      "usage antonym synonym";
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    padding: 5px;
+    width: 75rem;
+    height: auto;
+}
+
+@media screen and (max-width: 1212px) {
+    .result-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.result-container > div {
+    background-color: #323232;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.result-container > div.word {
+    grid-area: word;
+}
+.result-container > div.usage {
+    grid-area: usage;
+}
+.result-container > div.synonym {
+    grid-area: synonym;
+}
+.result-container > div.antonym {
+    grid-area: antonym;
+}
+
+@layer base {
+    .form-input {
+        @apply mb-9 p-3 w-80 rounded-lg bg-[#323232] focus:outline-none;
+    }
+    .text-in-line {
+        @apply w-80 sm:w-80 text-center border-[#505050] border-b-1 leading-[0.1em] my-[10px] mx-0;
+    }
+    .text-span {
+        @apply bg-[#161616] py-0 px-[16px];
+    }
+}
+@layer components {
+    .active-nav-link {
+        @apply text-white border-b-3 border-b-violet-600 px-4 py-3 text-center flex justify-center items-center flex-row;
+    }
+    .mobile-active-nav-link {
+        @apply text-violet-600 font-medium px-4 py-3 text-center;
+    }
+    .nav-link {
+        @apply text-white rounded-md px-4 py-3 text-center flex justify-center items-center flex-row;
+    }
+    .settings-link {
+        @apply text-white hover:bg-[#323232] rounded-md px-4 py-3 text-center flex gap-2 justify-center items-center;
+    }
+    .rotate {
+        @apply transition ease-in-out duration-800 hover:rotate-90;
+    }
+}
