@@ -9,9 +9,9 @@ const NotFoundPage = () => {
       <h1 class="text-6xl font-bold mb-4">404 Not Found</h1>
       <p class="text-xl mb-5">This page does not exist</p>
       <Link
-        to="/home"
+        to="/"
         class="text-white bg-violet-700 hover:bg-violet-600 rounded-md px-6 py-3 mt-4"
-        >Go Back</Link>
+        >Go to welcome page</Link>
     </section>
   )
 }
