@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import MainLayout from './layout/MainLayout'
 import LoginPage from './pages/LoginPage'
+import PrivateRoute from './components/PrivateRoute'
 
 const App = () => {
   const router = createBrowserRouter(
@@ -16,7 +17,11 @@ const App = () => {
         <Route path='/auth/register' element={<RegisterPage />}/>
         <Route path='/auth/login' element={<LoginPage />}/>
         <Route path='/' element={<MainLayout />}>
-          <Route path='/home' element={<HomePage />}/>
+          <Route path='/home' element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }/>
           <Route path='/guest' element={<GuestPage />}/>
           <Route path='*' element={<NotFoundPage />} />
         </Route>

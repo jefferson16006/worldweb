@@ -34,9 +34,10 @@ const RegisterPage = () => {
         return;
       }
       localStorage.setItem('user', data.user.username)
+      localStorage.setItem('token', data.token)
       navigate('/home')
     } catch (error) {
-      document.getElementById(error).textContent = data.error
+      document.getElementById(error).textContent = 'Server error. Please try again very soon.'
     } finally {
       setLoadSpinner(false)
     }

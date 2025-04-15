@@ -14,6 +14,8 @@ const LoginPage = () => {
     password
   }
 
+  // const deployedServer = 'https://worldweb-api.onrender.com'
+
   const handleLoginSubmit = async(e) => {
     e.preventDefault();
     setLoadSpinner(true)
@@ -33,10 +35,11 @@ const LoginPage = () => {
         }
         // console.log('Login successful: ', data)
         localStorage.setItem('user', data.user.username)
+        localStorage.setItem('token', data.token)
         navigate('/home')
     } catch (error) {
         // console.log(error)
-        document.getElementById('error').textContent = error
+        document.getElementById('error').textContent = 'Server error. Please try again very soon.'
     } finally {
       setLoadSpinner(false)
     }
@@ -68,6 +71,7 @@ const LoginPage = () => {
               {loadSpinner && <SmallSpinner/>}
               Login
             </button>
+            <Link to='/auth/register' className='text-center'>Don't have an account? <span className='text-[#8707f4]'>Sign up</span></Link>
       </form>
     </div></div>
   )
