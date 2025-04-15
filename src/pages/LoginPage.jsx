@@ -20,7 +20,7 @@ const LoginPage = () => {
     e.preventDefault();
     setLoadSpinner(true)
     try {
-        const res = await fetch('http://localhost:5000/api/auth/login', {
+        const res = await fetch('https://worldweb-api.onrender.com/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -35,6 +35,7 @@ const LoginPage = () => {
         }
         // console.log('Login successful: ', data)
         localStorage.setItem('user', data.user.username)
+        localStorage.setItem('token', data.token)
         navigate('/home')
     } catch (error) {
         // console.log(error)
@@ -70,6 +71,7 @@ const LoginPage = () => {
               {loadSpinner && <SmallSpinner/>}
               Login
             </button>
+            <Link to='/auth/register' className='text-center'>Don't have an account? <span className='text-[#8707f4]'>Sign up</span></Link>
       </form>
     </div></div>
   )

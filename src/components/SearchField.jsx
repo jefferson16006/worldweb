@@ -7,19 +7,15 @@ const SearchField = () => {
   const [apiSearchResults, setApiSearchResults] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const searchData = {
-    searchInput
-  };
-
-  useEffect(() => {
-    console.log(apiSearchResults); // Logs the updated results when apiSearchResults changes
-  }, [apiSearchResults]);
+  // useEffect(() => {
+  //   console.log(apiSearchResults); // Logs the updated results when apiSearchResults changes
+  // }, [apiSearchResults]);
 
   const handleSentenceSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/search-result', {
+      const res = await fetch('https://worldweb-api.onrender.com/api/search-result', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -28,16 +24,14 @@ const SearchField = () => {
       });
   
       const data = await res.json();
-      console.log("Fetched data:", data);
+      // console.log("Fetched data:", data);
   
-      // Check if it's an array or object
-      if (Array.isArray(data)) {
-        setApiSearchResults(data);
-      } else if (Array.isArray(data.results)) {
-        setApiSearchResults(data.results);
+      // Check if it's an object
+      if (data && typeof data === 'object') {
+        setApiSearchResults(data)
       } else {
-        console.warn("API did not return an array");
-        setApiSearchResults([]);
+        console.warn('Unexpected API response format')
+        setApiSearchResults([])
       }
   
     } catch (err) {
@@ -48,7 +42,6 @@ const SearchField = () => {
     }
   }
   
-
   return (
     <>
       <h1 className='mt-25 max-[886px]:mt-10 text-center text-4xl max-[886px]:text-3xl font-medium mb-6'>
@@ -73,12 +66,9 @@ const SearchField = () => {
           Search
         </button>
       </form>
-      {loading ? (
-  <Spinner />
-) : (
-  apiSearchResults && <SearchResults data={apiSearchResults} />
-)}
-
+      {loading ? (<Spinner />) : (
+        apiSearchResults && <SearchResults data={apiSearchResults} />
+      )}
     </>
   );
 };

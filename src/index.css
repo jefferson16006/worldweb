@@ -13,7 +13,7 @@ body {
     display: grid;
     grid-template-areas:
       "word word synonym"
-      "usage antonym synonym";
+      "usage suggestion synonym";
     grid-template-columns: 2fr 1fr 1fr;
     gap: 12px;
     padding: 5px;
@@ -45,8 +45,8 @@ body {
 .result-container > div.synonym {
     grid-area: synonym;
 }
-.result-container > div.antonym {
-    grid-area: antonym;
+.result-container > div.suggestion {
+    grid-area: suggestion;
 }
 
 @layer base {
@@ -75,5 +75,8 @@ body {
     }
     .rotate {
         @apply transition ease-in-out duration-800 hover:rotate-90;
+    }
+    .result-struct {
+        @apply flex gap-2 flex-col
     }
 }

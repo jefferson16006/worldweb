@@ -21,7 +21,7 @@ const RegisterPage = () => {
     e.preventDefault();
     setLoadSpinner(true)
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch('https://worldweb-api.onrender.com/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,6 +34,7 @@ const RegisterPage = () => {
         return;
       }
       localStorage.setItem('user', data.user.username)
+      localStorage.setItem('token', data.token)
       navigate('/home')
     } catch (error) {
       document.getElementById(error).textContent = 'Server error. Please try again very soon.'
