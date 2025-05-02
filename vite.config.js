@@ -12,8 +12,8 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/server': {
-        target: 'https://worldweb-api.onrender.com',
-        //target: 'http://localhost:5000',
+        //target: 'https://worldweb-api.onrender.com',
+        target: 'http://localhost:5000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/server/, '')
       },
