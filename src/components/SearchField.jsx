@@ -15,7 +15,7 @@ const SearchField = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('/server/api/search-result', {
+      const res = await fetch('https://worldweb-api.onrender.com/api/search-result', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
