@@ -15,7 +15,7 @@ const SearchField = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('https://worldweb-api.onrender.com/api/search-result', {
+      const res = await fetch('/server/api/search-result', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -25,17 +25,24 @@ const SearchField = () => {
   
       const data = await res.json();
       // console.log("Fetched data:", data);
+      if(!res.ok) {
+        document.getElementById('error').textContent = data.error
+        return
+      }
   
       // Check if it's an object
       if (data && typeof data === 'object') {
         setApiSearchResults(data)
+        document.getElementById('error').textContent = ''
       } else {
         console.warn('Unexpected API response format')
         setApiSearchResults([])
       }
   
     } catch (err) {
-      console.error("API error:", err);
+      if (err) {
+        document.getElementById('error').textContent = 'Server error. Please try again very soon.'
+      }
       setApiSearchResults([]);
     } finally {
       setLoading(false);
@@ -66,6 +73,9 @@ const SearchField = () => {
           Search
         </button>
       </form>
+
+      <p className='text-red-500 text-center mb-6 text-center' id='error'></p>
+
       {loading ? (<Spinner />) : (
         apiSearchResults && <SearchResults data={apiSearchResults} />
       )}

@@ -20,7 +20,7 @@ const LoginPage = () => {
     e.preventDefault();
     setLoadSpinner(true)
     try {
-        const res = await fetch('https://worldweb-api.onrender.com/api/auth/login', {
+        const res = await fetch('/server/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +39,9 @@ const LoginPage = () => {
         navigate('/home')
     } catch (error) {
         // console.log(error)
-        document.getElementById('error').textContent = 'Server error. Please try again very soon.'
+        if (error) {
+          document.getElementById('error').textContent = 'Server error. Please try again very soon.'
+        }
     } finally {
       setLoadSpinner(false)
     }
