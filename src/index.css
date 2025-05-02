@@ -9,6 +9,7 @@ body {
     font-family: 'Rubik', sans-serif;
     padding: 0 20px;
 }
+
 .result-container{
     display: grid;
     grid-template-areas:

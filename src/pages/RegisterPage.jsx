@@ -17,11 +17,13 @@ const RegisterPage = () => {
     password
   }
 
+  //const deployedServer = 'https://worldweb-api.onrender.com'
+
   const handleFormSubmit = async(e) => {
     e.preventDefault();
     setLoadSpinner(true)
     try {
-      const res = await fetch('https://worldweb-api.onrender.com/api/auth/register', {
+      const res = await fetch('/server/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +39,10 @@ const RegisterPage = () => {
       localStorage.setItem('token', data.token)
       navigate('/home')
     } catch (error) {
-      document.getElementById(error).textContent = 'Server error. Please try again very soon.'
+      // console.log(error)
+      if (error) {
+        document.getElementById('error').textContent = 'Server error. Please try again very soon.'
+      }
     } finally {
       setLoadSpinner(false)
     }
@@ -47,27 +52,33 @@ const RegisterPage = () => {
       <h1 className='text-5xl text-center font-medium mb-6'>Create an account</h1>
       <p className='text-red-500 text-center mb-6 text-center' id='error'></p>
       <form className='flex flex-col justify-center' onSubmit={handleFormSubmit}>
-        <input 
-          type='text' 
-          placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className='form-input'
-        />
-        <input 
-          type='email' 
-          placeholder='Email Address' 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className='form-input'
-        />
-        <input 
-          type='password' 
-          placeholder='Password'
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          className='form-input'
-        />
+        <label>
+          <input 
+            type='text' 
+            placeholder='Username'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className='form-input'
+          />
+        </label>
+        <label className='relative'>
+          <input 
+            type='email' 
+            placeholder='Email Address' 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className='form-input'
+          />
+        </label>
+        <label className='flex gap-3'>
+          <input 
+            type='password' 
+            placeholder='Password'
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            className='form-input'
+          />
+        </label>
         <button className='flex justify-center items-center mb-7 px-4 py-2 bg-violet-700 rounded-lg w-80 text-[19px] hover:bg-violet-500 cursor-pointer text-center'
         >
           {loadSpinner && <SmallSpinner />}
