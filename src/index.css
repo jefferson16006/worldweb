@@ -66,7 +66,10 @@ body {
         @apply text-white border-b-3 border-b-violet-600 px-4 py-3 text-center flex justify-center items-center flex-row;
     }
     .mobile-active-nav-link {
-        @apply text-violet-600 font-medium px-4 py-3 text-center;
+        @apply font-medium px-4 py-3 text-center;
+    }
+    .phone-active-nav-link {
+        @apply text-violet-600 font-medium px-4 py-3 text-center
     }
     .nav-link {
         @apply text-white rounded-md px-4 py-3 text-center flex justify-center items-center flex-row;
