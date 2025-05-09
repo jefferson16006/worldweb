@@ -20,7 +20,7 @@ const LoginPage = () => {
     e.preventDefault();
     setLoadSpinner(true)
     try {
-        const res = await fetch('/server/api/auth/login', {
+        const res = await fetch('https://worldweb-api.onrender.com/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
